@@ -43,3 +43,6 @@ pointer5, 指向1, 2, 3, 4, 5, 6中，还没使用乘5机会的丑数的位置�
 
 按照这个描述去看题解大概能懂
 
+337.打家劫舍三
+https://blog.csdn.net/acs713/article/details/70212195?ops_request_misc=&request_id=&biz_id=102&utm_term=cannot%20convert%20%27int%20(*)%5B100%5D%5B2&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-70212195.142^v93^control&spm=1018.2226.3001.4187
+此网址存储的是c语言二维数组作为函数的参数时出现的一些问题，对我有较强的启发意义。
