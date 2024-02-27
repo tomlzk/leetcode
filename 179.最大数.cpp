@@ -6,69 +6,27 @@
 
 // @lc code=start
 
-#include <iostream>
-using namespace std;
-#include <vector>
-#include <string>
-class Solution
-{
+class Solution {
 public:
-    string largestNumber(vector<int> &nums)
-    {
-        vector<string> res;
-        int maxSize = 0;
-        int flag = 0;
-        for (int i = 0; i < nums.size(); i++)
-        {
-            string temp = to_string(nums[i]);
-            int size = temp.size();
-            if (size > maxSize)
-            {
-                maxSize = size;
+    string largestNumber(vector<int> &nums) {
+        sort(nums.begin(), nums.end(), [](const int &x, const int &y) {
+            unsigned long sx = 10, sy = 10;
+            while (sx <= x) {
+                sx *= 10;
             }
-            res.push_back(temp);
-        }
-
-        while (maxSize > 0)
-        {
-            for (int i = 0; i < res.size(); i++)
-            {
-                // for (int j = res.size() - 1; j > i; j--)
-                // {
-                //     if (res[j - 1].size() > flag)
-                //     {
-                //         if (res[j][flag] > res[j - 1][flag])
-                //         {
-                //             char temp = res[j][flag];
-                //             res[j][flag] = res[j - 1][flag];
-                //             res[j - 1][flag] = temp;
-                //         }
-                //     }
-                //     else
-                //     {
-
-                //     }
-
-                // }
-
-                int j = res.size() - 1;
-                int now = 0;
-                while (j > i)
-                {
-                    if (res[now].size() > flag)
-                    {
-                        if (res[j][flag] > res[now][flag])
-                        {
-                            //             char temp = res[j][flag];
-                            //             res[j][flag] = res[j - 1][flag];
-                            //             res[j - 1][flag] = temp;
-                        }
-                    }
-                }
+            while (sy <= y) {
+                sy *= 10;
             }
-            flag++;
-            maxSize--;
+            return sy * x + y > sx * y + x;
+        });
+        if (nums[0] == 0) {
+            return "0";
         }
+        string ret;
+        for (int &x : nums) {
+            ret += to_string(x);
+        }
+        return ret;
     }
 };
 // @lc code=end
