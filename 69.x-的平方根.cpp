@@ -1,3 +1,11 @@
+// @before-stub-for-debug-begin
+#include <vector>
+#include <string>
+#include "commoncppproblem69.h"
+
+using namespace std;
+// @before-stub-for-debug-end
+
 /*
  * @lc app=leetcode.cn id=69 lang=cpp
  *
@@ -8,38 +16,21 @@
 class Solution
 {
 public:
-    int backstrack(int &x, int left, int right)
+    unsigned long mySqrt(unsigned long x)
     {
-        cout<<left<<endl;
-        if(  left || ((left + right) / 2 + 1) * ((left + right) / 2 + 1))
-        {
-            return (left + right) / 2;
-        }
-
-        if(((left + right) / 2) * ((left + right) / 2) <= x && ((left + right) / 2 + 1) * ((left + right) / 2 + 1) > x)
-        {
-            return (left + right) / 2;
-        }
-        if(left * left <= x && ((left + right) / 2) * ((left + right) / 2) > x)
-        {
-            return backstrack(x, left, (left + right) / 2);
-        }
-
-        if(((left + right) / 2) * ((left + right) / 2) <= x && right * right > x)
-        {
-            return backstrack(x, (left + right) / 2, right);
-        }
-
-    }
-
-    int mySqrt(int x)
-    {
-        if(x <= 1)
+        if(x == 0)
         {
             return 0;
         }
 
-        return backstrack(x, 1, x);
+        unsigned long i = 0;
+
+        for(; (i + 1) * (i + 1) <= x; i++)
+        {
+            
+        }
+
+        return i;
     }
 };
 // @lc code=end
