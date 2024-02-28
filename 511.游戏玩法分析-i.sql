@@ -13,5 +13,6 @@ FROM
   Activity A
 GROUP BY
   A.player_id;
+
 -- @lc code=end
 
