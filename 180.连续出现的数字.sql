@@ -6,17 +6,19 @@
 
 -- @lc code=start
 # Write your MySQL query statement below
-SELECT DISTINCT
-    l1.Num AS ConsecutiveNums
+SELECT
+    DISTINCT t.Num AS ConsecutiveNums
 FROM
-    Logs l1,
-    Logs l2,
-    Logs l3
-WHERE
-    l1.Id = l2.Id - 1
-    AND l2.Id = l3.Id - 1
-    AND l1.Num = l2.Num
-    AND l2.Num = l3.Num
-;
+(
+SELECT 
+    CASE @pre WHEN Num THEN 
+        @cnt := @cnt + 1
+    ELSE @cnt := 1 END AS cnt,
+    @pre := Num,
+    Num
+FROM
+    Logs a,
+    (SELECT @cnt := 1, @pre := '') b
+) t WHERE t.cnt >= 3
 -- @lc code=end
 
