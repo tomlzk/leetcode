@@ -15,25 +15,24 @@ public:
 
     void back(vector<int> res, int i, int n, int k)
     {
-        if(res.size() == k)
+        if (res.size() == k)
         {
             result.push_back(res);
-            //res.pop_back();
-            // back(res, i + 1, n, k);
+            // res.pop_back();
+            //  back(res, i + 1, n, k);
             return;
         }
-        if(i > n)
+        if (i > n)
         {
-            return ;
+            return;
         }
 
-        res.push_back(i);
-        back(res, i + 1, n, k);
-        res.pop_back();
-        back(res, i + 1, n, k);
-
-    
-
+        for (int j = i; j <= n; j++)
+        {
+            res.push_back(j);
+            back(res, j + 1, n, k);
+            res.pop_back();
+        }
     }
 
     vector<vector<int>> combine(int n, int k)
