@@ -5,55 +5,31 @@
  */
 
 // @lc code=start
-#include <iostream>
-#include <string>
-#include<algorithm>
-using namespace std;
-class Solution
-{
+class Solution {
 public:
-    string removeDuplicateLetters(string s)
-    {
-        string::iterator temp = s.begin();
-        string::iterator now1;
-        string::iterator now2;
-        while(temp != s.end())
-        {
-            char c = *temp;
-            int ccount = count(s.begin(), s.end(), *temp);
-            for(string::iterator it = temp; it != s.end(),ccount > 1; it++)
-            {
-                if(c == *it)
-                {
-                    now1 = it;
-                    if(now1 == now2)
-                    {
-                        s.erase(now2);
-                        it--;
-                        now1--;
-                    }
-                    now2 = now1;
-                }
-                else if(c < *it)
-                {
-                    while(it != s.end())
-                    {
-                        if(*it == c)
-                        {
-                            s.erase(it);
-                            it--;
-                        }
-                        it++;
-                    }
-                }
-                else if(c > *it)
-                {
-                    s.erase(now1);
-                    it--;
-                    ccount--;
-                }
-            }
+    string removeDuplicateLetters(string s) {
+        vector<int> vis(26), num(26);
+        for (char ch : s) {
+            num[ch - 'a']++;
         }
+
+        string stk;
+        for (char ch : s) {
+            if (!vis[ch - 'a']) {
+                while (!stk.empty() && stk.back() > ch) {
+                    if (num[stk.back() - 'a'] > 0) {
+                        vis[stk.back() - 'a'] = 0;
+                        stk.pop_back();
+                    } else {
+                        break;
+                    }
+                }
+                vis[ch - 'a'] = 1;
+                stk.push_back(ch);
+            }
+            num[ch - 'a'] -= 1;
+        }
+        return stk;
     }
 };
 // @lc code=end
