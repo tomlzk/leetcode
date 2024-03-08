@@ -5,22 +5,34 @@
  */
 
 // @lc code=start
-class Solution {
+#include <iostream>
+using namespace std;
+#include <vector>
+class Solution
+{
 public:
-    string removeDuplicateLetters(string s) {
+    string removeDuplicateLetters(string s)
+    {
         vector<int> vis(26), num(26);
-        for (char ch : s) {
+        for (char ch : s)
+        {
             num[ch - 'a']++;
         }
 
         string stk;
-        for (char ch : s) {
-            if (!vis[ch - 'a']) {
-                while (!stk.empty() && stk.back() > ch) {
-                    if (num[stk.back() - 'a'] > 0) {
+        for (char ch : s)
+        {
+            if (!vis[ch - 'a'])
+            {
+                while (!stk.empty() && stk.back() > ch)
+                {
+                    if (num[stk.back() - 'a'] > 0)
+                    {
                         vis[stk.back() - 'a'] = 0;
                         stk.pop_back();
-                    } else {
+                    }
+                    else
+                    {
                         break;
                     }
                 }
